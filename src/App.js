@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import './App.css'; // Import CSS for styling
+// import './ShipmentTable.css'; // This will be your CSS file for styling
+
 
 function App() {
   const [orderId, setOrderId] = useState('');
@@ -31,22 +34,51 @@ function App() {
       {shipmentData && (
         shipmentData.shipments.map((shipment, index) => (
           <div key={index}>
-            <h2>Shipment ID: {shipment.id}</h2>
-            <p>Service: {shipment.service}</p>
-            <p>Origin: {shipment.origin.address.addressLocality}</p>
-            <p>Destination: {shipment.destination.address.addressLocality}</p>
-            <p>Status: {shipment.status.status} at {shipment.status.timestamp}</p>
-            <div>
-              <h3>Events:</h3>
-              {shipment.events.map((event, index) => (
-                <div key={index}>
-                  <p>{event.timestamp} - {event.description}</p>
-                </div>
-              ))}
-            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Service</th>
+                  <th>Origin</th>
+                  <th>Destination</th>
+                  <th>Status</th>
+                  <th>Timestamp</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{shipment.id}</td>
+                  <td>{shipment.service}</td>
+                  <td>{shipment.origin.address.addressLocality}</td>
+                  <td>{shipment.destination.address.addressLocality}</td>
+                  <td>{shipment.status.status}</td>
+                  <td>{shipment.status.timestamp}</td>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Events:</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Description</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+              <tbody>
+                {shipment.events.map((event, evtIndex) => (
+                  <tr key={evtIndex}>
+                    <td>{event.timestamp}</td>
+                    <td>{event.description}</td>
+                    <td>{event.location.address.addressLocality}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         ))
       )}
+      
     </div>
   );
 }

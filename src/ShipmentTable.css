@@ -1,0 +1,23 @@
+.shipment-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .shipment-table th, .shipment-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .shipment-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .shipment-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .shipment-table tr:hover {
+    background-color: #e9e9e9;
+  }
+  
